@@ -9,11 +9,11 @@ Test files are included with sample inputs:
 ```bash
 # Problem A
 cd A
-python mystic_waves.py < test_input.txt
+python mystic_waves.py 
 
 # Problem B
 cd B
-python cargocraft_fleet.py < test_input.txt
+python cargocraft_fleet.py 
 ```
 
 ### Problem C
