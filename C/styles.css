@@ -1,0 +1,326 @@
+:root {
+    --bg: #050505;
+    --panel: rgba(10, 10, 10, 0.9);
+    --panel-light: rgba(18, 18, 18, 0.85);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f5f5f5;
+    --muted: #a0a0a0;
+    --line: rgba(255, 255, 255, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at var(--torch-x, -200px) var(--torch-y, -200px), rgba(255, 200, 130, 0.18), transparent 65%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.15s ease;
+}
+
+body.torch-active::before {
+    opacity: 1;
+}
+
+.orb {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 65%);
+    filter: blur(6px);
+    z-index: 0;
+}
+
+.orb.one {
+    top: -140px;
+    left: -80px;
+}
+
+.orb.two {
+    bottom: -160px;
+    right: -60px;
+}
+
+.app-container {
+    width: min(640px, 100%);
+    z-index: 1;
+}
+
+.app-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    width: 100%;
+    max-width: 520px;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.35rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.card-header h1 {
+    font-size: 2rem;
+}
+
+.user-preview {
+    display: none;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.input-shell {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: transparent;
+}
+
+.form-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-button {
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.password-strength {
+    margin-top: 10px;
+    background: var(--panel-light);
+    border-radius: 999px;
+    height: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0%;
+    background: #ffffff;
+    transition: width 0.25s ease;
+}
+
+.password-strength-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.password-criteria {
+    list-style: none;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-top: 12px;
+}
+
+.password-criteria li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.password-criteria li::before {
+    content: '•';
+    color: var(--muted);
+}
+
+.password-criteria li.met {
+    color: var(--text);
+}
+
+.password-criteria li.met::before {
+    content: '✔';
+}
+
+.login-button {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #fff;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: #080808;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.login-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--btn-x, 50%) var(--btn-y, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.login-button:hover::before {
+    opacity: 1;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+}
+
+.login-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.forgot-password-link {
+    text-align: center;
+    display: block;
+    margin-top: 14px;
+    color: var(--text);
+    text-decoration: underline;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.welcome-card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.welcome-card.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.welcome-content {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px 36px;
+    text-align: center;
+}
+
+.logout-button {
+    margin-top: 30px;
+    padding: 14px 32px;
+    border-radius: 14px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 16px;
+    background: #fff;
+    opacity: 0;
+    animation: confetti-fall 1.6s linear forwards;
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-20px); opacity: 1; }
+    
+    100% { transform: translateY(500px); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 24px 12px;
+    }
+
+    .login-card {
+        padding: 24px;
+    }
+}

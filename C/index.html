@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solum Login Page</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="dark">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="app-container">
+        <div class="app-grid" id="portalGrid">
+            <div class="login-card" id="loginCard">
+                <div class="card-header">
+                    <div>
+                       <h3><p class="eyebrow">Solum </p></h1> 
+                        <h1></h1>
+                    </div>
+                </div>
+
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-shell">
+                            <input type="email" id="email" class="form-input" placeholder="sylviaH@solum.com" />
+                        </div>
+                        <p id="emailError" class="error-message" style="display:none"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-shell">
+                            <input type="password" id="password" class="form-input" placeholder="••••••••" />
+                            <button type="button" id="togglePassword" class="input-button">Show</button>
+                        </div>
+                        <p id="passwordError" class="error-message" style="display:none"></p>
+
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                        </div>
+                        <p class="password-strength-label" id="passwordStrengthLabel">Strength: Start typing</p>
+                        <ul class="password-criteria">
+                            <li data-criterion="length">8-16 characters</li>
+                            <li data-criterion="upper">Uppercase letter</li>
+                            <li data-criterion="lower">Lowercase letter</li>
+                            <li data-criterion="number">At least one number</li>
+                            <li data-criterion="symbol">At least one symbol</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="login-button" id="loginButton">Enter Solum</button>
+                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot Password</a>
+                </form>
+            </div>
+        </div>
+
+        <div id="welcomeCard" class="welcome-card hidden">
+            <div class="welcome-content">
+                <p class="eyebrow">Access granted</p>
+                <h1 id="welcomeTitle">Thank you for this opportunity!</h1>
+                <p id="welcomeEmailDisplay" class="preview-email" style="margin-top:10px"></p>
+                <button class="logout-button" id="logoutButton">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <div id="confettiContainer" class="confetti-container"></div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
